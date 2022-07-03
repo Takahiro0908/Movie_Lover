@@ -1,24 +1,28 @@
-# README
+# Movie_Lover
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+自分の好みに合いそうな映画を検索したり、自分が好きな映画を投稿したりできるコミュニティサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+映画を見るのが好きで、年代問わず自分の好きな映画を教え合えるサービスがあれば良いなと考え、このテーマにしました。
 
-* Ruby version
+### ターゲットユーザ
+映画好きな人
 
-* System dependencies
+### 主な利用シーン
+見たい映画を検索したり、自分の好きな映画を投稿したりできる
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記します。
+- 使用しない場合は、使用素材の項目をREADMEから削除します。
