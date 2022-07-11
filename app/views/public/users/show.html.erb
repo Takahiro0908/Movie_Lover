@@ -1,0 +1,23 @@
+<!-- ユーザーの詳細 -->
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+
+<% @movies.each do |movie| %>
+<div>
+  <%= link_to movie_path(movie.id) do %>
+    <%= image_tag movie.get_image %>
+  <% end %>
+  <p>投稿ユーザー画像：<%= image_tag movie.user.get_profile_image(100,100) %></p>
+  <p>タイトル：<%= movie.title %></p>
+  <p>内容：<%= movie.body %></p>
+  <p>ユーザーネーム：<%= movie.user.name %></p>
+  <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
+</div>
+<% end %>
