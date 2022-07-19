@@ -12,27 +12,24 @@
     </div>
   <% end %>
 
-  <div class="col-2">
-    <%= render 'layouts/search_side_bar', genres: @genres %>
-  </div>
+<div class="row">
 
-  <div class="col-10">
-    <div class="row">
-      <% @movies.each do |movie| %>
+    <% @movies.each do |movie| %>
         <div class="card" style="width: 18rem;">
-        <%= link_to movie_path(movie.id) do %>
+        <%= link_to admin_movie_path(movie.id) do %>
           <%= image_tag movie.get_image, size: '286x180' %>
         <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= movie.title %></h5>
-          <p class="card-text"><%= movie.body %></p>
-          <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
-          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      <div class="card-body">
+        <h5 class="card-title"><%= movie.title %></h5>
+        <p class="card-text"><%= movie.body %></p>
+        <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
         </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+    <% end %>
+
+</div>
+
 
 
 <%= paginate @movies %>

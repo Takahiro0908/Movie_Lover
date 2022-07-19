@@ -1,0 +1,11 @@
+    <!--検索結果-->
+    <% if @results.present? %>
+      <!--検索がヒットした場合-->
+      <% @results.each do |result| %>
+        <%= image_tag result.get_image %>
+        <%= result.title %>
+      <% end %>
+    <% else %>
+      <!--検索がヒットしなかった場合-->
+      <p>検索結果はありません</p>
+    <% end %>

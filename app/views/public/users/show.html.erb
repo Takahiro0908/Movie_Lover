@@ -1,23 +1,35 @@
+<div class="container">
 <!-- ユーザーの詳細 -->
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% if @user.name != "guestuser" %>
+    <div class='row'>
+      <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    </div>
   <% end %>
-</div>
+  <p><%= link_to"お気に入り記事",favorites_user_path(@user) %></p>
 
 <!-- ユーザーの投稿一覧 -->
 
-<% @movies.each do |movie| %>
-<div>
-  <%= link_to movie_path(movie.id) do %>
-    <%= image_tag movie.get_image %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= image_tag movie.user.get_profile_image(100,100) %></p>
-  <p>タイトル：<%= movie.title %></p>
-  <p>内容：<%= movie.body %></p>
-  <p>ユーザーネーム：<%= movie.user.name %></p>
-  <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
+<div class="row">
+    <% @movies.each do |movie| %>
+        <div class="card" style="width: 17rem;">
+        <%= link_to movie_path(movie.id) do %>
+          <!--<img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
+          <%= image_tag movie.get_image, size: '270x180' %>
+        <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= movie.title %></h5>
+        <p class="card-text"><%= movie.body %></p>
+        <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
+        </div>
+    <% end %>
+
 </div>
-<% end %>
+
+</div>

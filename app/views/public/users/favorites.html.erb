@@ -1,0 +1,18 @@
+<div class="container">
+  いいね一覧
+  <div class="row">
+    <% @favorite_movies.each do |movie|%>
+      <div class="card" style="width: 18rem;">
+        <%= link_to movie_path(movie.id) do %>
+          <%= image_tag movie.get_image, size: '286x180' %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= movie.title %></h5>
+          <p class="card-text"><%= movie.body %></p>
+          <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
+          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
