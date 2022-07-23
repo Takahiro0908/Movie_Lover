@@ -12,6 +12,8 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @movies =@user.movies
+    favorites= Favorite.where(user_id: @user.id).pluck(:movie_id)
+    @favorite_movies = Movie.find(favorites)
   end
 
   def edit
@@ -26,7 +28,7 @@ class Public::UsersController < ApplicationController
 
   def destroy
   end
-  
+
   def check
     @user = User.find(params[:id])
     #ユーザーの情報を見つける
@@ -42,7 +44,7 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
     #指定されたrootへのpath
   end
-  
+
   def favorites
     @user = User.find(params[:id])
     favorites= Favorite.where(user_id: @user.id).pluck(:movie_id)

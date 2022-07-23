@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :movies, only: [:new, :create, :index, :show, :destroy] do
       collection do
         get 'search' #検索結果のページへ遷移
+        get 'search_tmdb'
+        get 'detail' 
       end
       resources :movie_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]

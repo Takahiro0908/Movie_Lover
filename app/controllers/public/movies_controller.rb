@@ -1,5 +1,8 @@
 class Public::MoviesController < ApplicationController
   before_action :search_movie, only: [:index, :search]
+  require 'themoviedb-api'
+  Tmdb::Api.key("d172e3134504081346e78aaedb5d7059")
+  Tmdb::Api.language("ja") # こちらで映画情報の表示の際の言語設定を日本語にできます
 
   def new
     #Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成
@@ -22,6 +25,19 @@ class Public::MoviesController < ApplicationController
     @results = @p.result
   end
 
+  def search_tmdb
+    # 一旦moviedataという変数にアウトプットを格納
+    # @tmdb_movies = JSON.parse((Tmdb::Search.movie(params[:title])).to_json)
+    # ここで検索結果を表示
+
+    # 検索結果ビュ-のリンクから下のパスに飛ぶ
+    # new_movie_path(title:tmdb_movie_title)
+  end
+
+  def detail
+
+  end
+
   def index
     # @movies = Movie.page(params[:page])
     @genres = Genre.all
@@ -35,6 +51,7 @@ class Public::MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @genre = Genre.find(@movie.genre_id)
     @movie_comment = MovieComment.new
   end
 
@@ -52,7 +69,7 @@ class Public::MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :image, :body)
+    params.require(:movie).permit(:title, :image, :body, :genre_id)
   end
 
 end

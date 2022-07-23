@@ -1,9 +1,11 @@
-<div>
-  <%= image_tag @movie.get_image %>
+<div class="container">
+<div class>
+  <%= image_tag @movie.get_image, size: '200x200' %>
   <p>タイトル：<%= @movie.title %></p>
+  <p>ジャンル：<%= @genre.name %></p>
   <p>内容：<%= @movie.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag @movie.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= @movie.user.name %></p>
+  <p><%= image_tag @movie.user.get_profile_image(100,100) %></p>
+  <p><%= @movie.user.name %></p>
   <p>投稿日：<%= @movie.created_at.strftime('%Y/%m/%d') %></p>
   <% if @movie.user == current_user %>
   <%= button_to "削除", movie_path(@movie), method: :delete %>
@@ -40,4 +42,5 @@
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
+</div>
 </div>
