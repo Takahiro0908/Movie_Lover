@@ -8,8 +8,11 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  # enum status: {Available: true, Invalid: false}
-  # #有効会員はtrue、退会済み会員はfalse
+  # validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  # validates :introduction, length: { maximum: 50 }
+
+  enum is_active: {Available: true, Invalid: false}
+  #有効会員はtrue、退会済み会員はfalse
 
   def active_for_authentication?
     super && (self.status == true)

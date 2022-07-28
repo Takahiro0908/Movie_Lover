@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-8">
+    <% if movie.movie_comments.present? %>
+      <p>コメント件数：<%= movie.movie_comments.count %></p>
+      <% movie.movie_comments.each do |movie_comment| %>
+        <div class="comment-content">
+          <div class="comment-user-image">
+            <p><%= image_tag movie_comment.user.get_profile_image(100,100) %></p>
+          </div>
+          <div class="comment-user-content">
+            <%= movie_comment.user.name %><br/>
+            <%= movie_comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+        </div>
+
+        <div class="comment">
+          コメント：<%= movie_comment.comment %>
+        </div>
+          <% if movie_comment.user == current_user %>
+            <div class="comment-delete" >
+              <%= link_to "削除", movie_movie_comment_path(movie_comment.movie, movie_comment), method: :delete, remote: true, class: "btn btn-secondary", data: {confirm: "本当に削除しますか？"} %>
+            </div>
+          <% end %>
+
+      <% end %>
+    <% else %>
+      <p>コメントはまだありません</p>
+    <% end %>
+  </div>
+</div>

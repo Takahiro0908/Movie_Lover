@@ -1,0 +1,19 @@
+
+.main-container {
+  background-image: image-url('haikei_image.jpg');
+  background-size: contain;
+  background-size: cover;
+  height: 850px;
+}
+
+.main-visual-content {
+  width: 100%; /* 横幅40% */
+  height: 850px; /* 親の高さに揃える */
+  background-color: rgba(0, 0, 0, 0.5); /* 背景色を半透明の黒にする */
+  text-align: center; /* 文字を中央揃えにする */
+  padding-top: 350px; /* 上側の内側余白で垂直方向の位置を調整 */
+}
+
+.main-visual-text {
+  color: #fff; /* 文字色を白に変更 */
+}

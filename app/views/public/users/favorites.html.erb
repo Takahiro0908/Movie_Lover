@@ -1,18 +1,25 @@
 <div class="container">
-  いいね一覧
+  <h2>お気に入り</h2>
   <div class="row">
     <% @favorite_movies.each do |movie|%>
-      <div class="card" style="width: 18rem;">
-        <%= link_to movie_path(movie.id) do %>
-          <%= image_tag movie.get_image, size: '286x180' %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= movie.title %></h5>
-          <p class="card-text"><%= movie.body %></p>
-          <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
-          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      <div class="col-md-4 mb-3">
+        <div class="card" style='width:100%; height:100%;'>
+          <%= link_to movie_path(movie.id) , {style: "height: 50%;"}  do %>
+            <%= image_tag movie.get_image, :width =>"100%", :height =>"100%" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text"><%= movie.body %></p>
+            <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
+            <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+          </div>
         </div>
       </div>
     <% end %>
   </div>
+
+  <ul class="pagination justify-content-center">
+    <%= paginate @movies %>
+  </ul>
+
 </div>

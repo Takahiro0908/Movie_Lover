@@ -2,5 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.movie-content {
+  display: flex;
+}
 
+.movie-title {
+  margin-right: 10px;
+}
+
+.movie-favorites {
+  margin-top: 5px;
+}
+
+.c-media {
+    height: 100px;
+    margin-bottom: 15px;
+    display: flex;
+}
+.c-media-avator {
+    margin-right: 10px;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.c-media-content {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.comment-content {
+    height: 100px;
+    margin-bottom: 15px;
+    display: flex;
+}
+.comment-user-image {
+    margin-right: 10px;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.comment-user-content {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.comment {
+  margin-left: 110px
+}
 

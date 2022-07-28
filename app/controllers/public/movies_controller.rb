@@ -42,9 +42,9 @@ class Public::MoviesController < ApplicationController
     # @movies = Movie.page(params[:page])
     @genres = Genre.all
      if params[:genre_id]
-      @movies = Movie.where(genre_id: params[:genre_id]).page(params[:page]).per(8)
+      @movies = Movie.where(genre_id: params[:genre_id]).page(params[:page]).per(6)
      else
-      @movies = Movie.all.page(params[:page]).per(8)
+      @movies = Movie.all.page(params[:page]).per(6)
      end
 
   end

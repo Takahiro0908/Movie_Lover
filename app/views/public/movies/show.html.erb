@@ -1,46 +1,57 @@
 <div class="container">
-<div class>
-  <%= image_tag @movie.get_image, size: '200x200' %>
-  <p>タイトル：<%= @movie.title %></p>
-  <p>ジャンル：<%= @genre.name %></p>
-  <p>内容：<%= @movie.body %></p>
-  <p><%= image_tag @movie.user.get_profile_image(100,100) %></p>
-  <p><%= @movie.user.name %></p>
-  <p>投稿日：<%= @movie.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @movie.user == current_user %>
-  <%= button_to "削除", movie_path(@movie), method: :delete %>
-  <% end %>
-  <% if @movie.favorited_by?(current_user) %>
-    <p>
-      <%= link_to movie_favorites_path(@movie), method: :delete do %>
-        ♥<%= @movie.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to movie_favorites_path(@movie), method: :post do %>
-        ♡<%= @movie.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-</div>
+  <div class="row" style="padding-bottom:10px;">
+    <div class="col-md-4">
+      <div class="movie-image">
+        <%= image_tag @movie.get_image, size: '300x400' %>
+      </div>
+    </div>
 
-<div>
-  <p>コメント件数：<%= @movie.movie_comments.count %></p>
-  <% @movie.movie_comments.each do |movie_comment| %>
-    <p><%= image_tag movie_comment.user.get_profile_image(100,100) %></p>
-    <%= movie_comment.user.name %>
-    <%= movie_comment.created_at.strftime('%Y/%m/%d') %><%= movie_comment.comment %>
-    <% if movie_comment.user == current_user %>
-      <%= link_to "削除", movie_movie_comment_path(movie_comment.movie, movie_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
+    <div class="col-md-8">
+      <div class="movie-content">
+        <div class="movie-title">
+          <h3><%= @movie.title %></h3>
+        </div>
+        <!--イイね機能-->
+        <div class="movie-favorites">
+          <div id="favorite_btn_<%=@movie.id %>">
+            <%= render "public/favorites/favorites", movie: @movie %>
+          </div>
+        </div>
+      </div>
 
-<div>
-  <%= form_with model: [@movie, @movie_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
+      <div class="movie-genre">
+        <p>ジャンル：<%= @genre.name %></p>
+      </div>
+
+      <div class="c-media">
+        <div class="c-media-avator">
+          <%= image_tag @movie.user.get_profile_image(100,100) %>
+        </div>
+        <div class="c-media-content">
+          <h4><%= @movie.user.name %></h4>
+          <%= @movie.created_at.strftime('%Y/%m/%d') %>
+        </div>
+      </div>
+
+        <div class="movie-body">
+          <p>投稿内容：<%= @movie.body %></p>
+        </div>
+        <% if @movie.user == current_user %>
+        <%= button_to "削除", movie_path(@movie), method: :delete %>
+        <% end %>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      <!--コメントフォーム-->
+      <div class="new-comment">
+        <%= render 'public/movie_comments/form', movie: @movie, movie_comment: @movie_comment %>
+      </div>
+    </div>
+  </div>
+  <!--コメント一覧部分-->
+  <div id="comments_area">
+    <%= render 'public/movie_comments/comments', movie: @movie %>
+  </div>
 </div>

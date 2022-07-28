@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -14,9 +14,17 @@
     <header>
       <%= render 'layouts/header' %>
         <main>
-          <p id="notice"><%= notice %></p>
+          <div id="flash-message">
+            <!--フラッシュメッセージ-->
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+          </div>
         </main>
     </header>
     <%= yield %>
+    <footer class="bg-dark" style="margin-top:10px; height:50px;">
+
+    </footer>
+
   </body>
 </html>

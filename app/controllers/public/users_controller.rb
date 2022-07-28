@@ -11,9 +11,10 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @movies =@user.movies
-    favorites= Favorite.where(user_id: @user.id).pluck(:movie_id)
-    @favorite_movies = Movie.find(favorites)
+    @movies =@user.movies.page(params[:page]).per(6)
+    # favorites= Favorite.where(user_id: @user.id).pluck(:movie_id)
+    # @favorite_movies = Movie.find(favorites)
+
   end
 
   def edit
@@ -47,6 +48,7 @@ class Public::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
+    @movies =@user.movies.page(params[:page]).per(6)
     favorites= Favorite.where(user_id: @user.id).pluck(:movie_id)
     @favorite_movies = Movie.find(favorites)
   end

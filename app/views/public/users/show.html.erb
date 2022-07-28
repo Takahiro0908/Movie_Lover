@@ -1,7 +1,7 @@
 <div class="container">
   <!-- ユーザーの詳細 -->
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-2">
       <div class="d-flex align-items-center justify-content-center">
         <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle" %>
       </div>
@@ -16,22 +16,36 @@
         <% end %>
       </div>
     </div>
-    <!--<p><%= link_to"お気に入り記事",favorites_user_path(@user) %></p>-->
 
-    <div class="col-lg-8">
-      <h2>お気に入り一覧</h2>
-        <% @favorite_movies.each do |movie|%>
-          <div class="card" style="width: 18rem;">
-          <%= link_to movie_path(movie.id) do %>
-            <%= image_tag movie.get_image, size: '286x180' %>
-          <% end %>
+    <div class="col-md-10">
+      <% if user_signed_in? %>
+　      <h2> <%= current_user.name %>の投稿一覧</h2>
+      <% end %>
+      <!-- ユーザーの投稿一覧 -->
+      <div class="row">
+        <% @movies.each do |movie| %>
+           <div class="col-md-4 mb-3">
+            <div class="card" style='width:100%; height:100%;'>
+            <%= link_to movie_path(movie.id), {style: "height: 50%;"}  do %>
+              <!--<img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
+               <%= image_tag movie.get_image, :width =>"100%", :height =>"100%" %>
+            <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= movie.title %></h5>
             <p class="card-text"><%= movie.body %></p>
+            <p id="favorite_btn_<%=movie.id %>">
+              <%= render "public/favorites/favorites", movie: movie %>
+            </p>
             <p><%= link_to "#{movie.movie_comments.count} コメント", movie_path(movie.id) %></p>
             <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
           </div>
-          </div>
+            </div>
+            </div>
         <% end %>
-    </div>
+      </div>
+
+      <ul class="pagination justify-content-center">
+        <%= paginate @movies %>
+      </ul>
+
 </div>

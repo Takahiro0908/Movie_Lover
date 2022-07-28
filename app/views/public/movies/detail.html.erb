@@ -5,22 +5,21 @@
     <div class="card-wrapper">
             <div class="card">
                 <div class="card-upperinfo">
-                    <%if movieinfo['table']['title'].present?%>
+                    <% if movieinfo['table']['title'].present?%>
                         <h3><%= movieinfo['table']['title'] %></h3>
-                    <%end%>
+                    <% end %>
 
                     <% if movieinfo['table']['release_date'].present? %>
                         <p class="release-date"><%= movieinfo['table']['release_date'] %></p>
-                    <%end%>
+                    <% end %>
                 </div>
-
-                <% if movieinfo['table']['poster_path'].present? %>
-                    <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['poster_path'] %></p>
-                <%end%>
+                    <% if movieinfo['table']['poster_path'].present? %>
+                        <p><%= image_tag 'https://image.tmdb.org/t/p/w1280' + movieinfo['table']['poster_path'], size: '400x600' %></p>
+                    <% end %>
 
                    <% if movieinfo['table']['overview'].present? %>
                         <p class="release-date"><%= movieinfo['table']['overview'] %></p>
-                    <%end%>
+                    <% end %>
             </div>
     </div>
 </div>
