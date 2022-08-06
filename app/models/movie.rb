@@ -4,6 +4,7 @@ class Movie < ApplicationRecord
   belongs_to :user
   has_many :movie_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   #バリデーションの設定
   validates :title, presence: true

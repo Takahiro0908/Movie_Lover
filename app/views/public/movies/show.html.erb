@@ -35,6 +35,13 @@
 
         <div class="movie-body">
           <p>投稿内容：<%= @movie.body %></p>
+          <!--自然言語処理追加-->
+          <p class="sentiment-score">本文の感情分析スコア[<%= @movie.score %>]</p>
+        </div>
+        <div class="tag-box">
+          <% @movie.tags.each do |tag| %>
+            <span class="label"><%= tag.name %></span>
+          <% end %>
         </div>
         <% if @movie.user == current_user %>
         <%= button_to "削除", movie_path(@movie), method: :delete %>

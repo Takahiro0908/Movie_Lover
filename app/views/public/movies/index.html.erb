@@ -30,7 +30,9 @@
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= movie.title %></h5>
-                <p class="card-text"><%= movie.body %></p>
+                <span class="card-text"><%= movie.body %></span></br>
+                <!--#自然言語処理追加-->
+                <span class="sentiment-score">本文の感情分析スコア<%= movie.score %></span>
                  <div id="favorite_btn_<%=movie.id %>">
                     <%= render "public/favorites/favorites", movie: movie %>
                   </div>

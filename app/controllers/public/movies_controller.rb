@@ -12,8 +12,16 @@ class Public::MoviesController < ApplicationController
     # 投稿データの保存
   def create
     @movie = Movie.new(movie_params)
+    #投稿した本文をAPIに渡す
+    @movie.score = Language.get_data(movie_params[:body])  #この行を追加
+
     @movie.user_id = current_user.id
     if @movie.save
+      #VisionAPIの呼び出し
+      tags = Vision.get_image_data(@movie.image)
+      tags.each do |tag|
+        @movie.tags.create(name: tag)
+      end
       redirect_to movies_path
     else
       render :new
@@ -39,7 +47,6 @@ class Public::MoviesController < ApplicationController
   end
 
   def index
-    # @movies = Movie.page(params[:page])
     @genres = Genre.all
      if params[:genre_id]
       @movies = Movie.where(genre_id: params[:genre_id]).page(params[:page]).per(6)
