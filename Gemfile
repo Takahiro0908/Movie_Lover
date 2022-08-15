@@ -59,7 +59,8 @@ gem 'devise'
 gem 'kaminari','~> 1.2.1'
 gem 'jquery-rails'
 gem 'ransack'
-gem 'themoviedb-api', '~> 1.3'
+# gem 'themoviedb-api', '~> 1.3'
+gem 'themoviedb-api', git: 'https://github.com/developius/themoviedb-api'
 
 gem 'dotenv-rails'
 group :production do
