@@ -1,4 +1,11 @@
 <div class="container">
+    <!--カレンダー追加-->
+    <%= month_calendar do |date| %>
+      <%= date.day %>
+    <% end %>
+
+
+
     <h1>映画検索</h1>
     <div>
         <%= form_tag(search_tmdb_movies_path, method: :get) do %>
@@ -7,7 +14,7 @@
         <% end %>
     </div>
 
-  
+
 
     <%if params[:looking_for].present? %>
     <!-- 検索された時にコンテンツを表示する-->

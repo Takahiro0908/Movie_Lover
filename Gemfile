@@ -59,7 +59,6 @@ gem 'devise'
 gem 'kaminari','~> 1.2.1'
 gem 'jquery-rails'
 gem 'ransack'
-# gem 'themoviedb-api', '~> 1.3'
 gem 'themoviedb-api', git: 'https://github.com/developius/themoviedb-api'
 
 gem 'dotenv-rails'
@@ -70,4 +69,7 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+gem 'simple_calendar', '~> 2.0'
+gem 'rails-i18n'
 
