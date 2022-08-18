@@ -47,7 +47,7 @@ class Public::MoviesController < ApplicationController
   end
 
   def index
-    @movie = Movie.find(params[:id])
+    # @movie = Movie.find(params[:id])
     @genres = Genre.all
      if params[:genre_id]
       @movies = Movie.where(genre_id: params[:genre_id]).page(params[:page]).per(6)
