@@ -1,9 +1,6 @@
 class Public::MoviesController < ApplicationController
   before_action :search_movie, only: [:index, :search]
-  require 'themoviedb-api'
 
-  Tmdb::Api.key("#{ENV['TMDB_API_KEY']}")
-  Tmdb::Api.language("ja") # こちらで映画情報の表示の際の言語設定を日本語にできます
 
   def new
     #Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成
@@ -35,6 +32,9 @@ class Public::MoviesController < ApplicationController
   end
 
   def search_tmdb
+    require 'themoviedb-api'
+    Tmdb::Api.key("#{ENV['TMDB_API_KEY']}")
+    Tmdb::Api.language("ja") # こちらで映画情報の表示の際の言語設定を日本語にできます
     # 一旦moviedataという変数にアウトプットを格納
     # @tmdb_movies = JSON.parse((Tmdb::Search.movie(params[:title])).to_json)
     # ここで検索結果を表示

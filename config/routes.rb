@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       collection do
         get 'search' #検索結果のページへ遷移
         get 'search_tmdb'
-        get 'detail' 
+        get 'detail'
       end
       resources :movie_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
@@ -48,6 +48,5 @@ Rails.application.routes.draw do
    devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
-
 
 end
