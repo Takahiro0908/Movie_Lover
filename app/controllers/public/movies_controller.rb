@@ -1,11 +1,8 @@
 class Public::MoviesController < ApplicationController
   before_action :search_movie, only: [:index, :search]
   require 'themoviedb-api'
-  #APIのURL作成
-  api_url = "https://api.themoviedb.org/3/movie/550?api_key=#{ENV['TMDB_API_KEY']}"
-  #TMDB APIにリクエスト
-  uri = URI.parse(api_url)
 
+  Tmdb::Api.key("#{ENV['TMDB_API_KEY']}")
   Tmdb::Api.language("ja") # こちらで映画情報の表示の際の言語設定を日本語にできます
 
   def new
